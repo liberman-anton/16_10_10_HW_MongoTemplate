@@ -16,7 +16,7 @@ public class MongoTemplateTest {
 	private static MongoTemplate<Person,Integer> mongoTemplate = new MongoTemplate<>
 		("mongodb://root:12345@ds053166.mlab.com:53166/", "bsh_persons", "persons");
 	private static Person personExpect = new Person(12345000, 2016, "name10");
-	private static Child childExpect = new Child(12345, 2016, "name10","sun");
+	private static Child childExpect = new Child(12345, 2017, "name10","sun");
 	
 	
 	@Before

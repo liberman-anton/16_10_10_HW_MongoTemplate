@@ -32,6 +32,7 @@ public class MongoTemplate<T,ID> {
 	
 	public void drop(){
 		objects.drop();
+		this.keyFieldName = null;
 	}
 
 	public void saveOne(T obj) throws Exception{
@@ -73,11 +74,12 @@ public class MongoTemplate<T,ID> {
 				} else
 					throw new Exception();
 			else if(field.isAnnotationPresent(Index.class)){
-				objects.createIndex(
-						new Document(field.getName(), 1),
-								new IndexOptions().unique(
-										field.getAnnotation(Index.class).unique())
-						);
+				String name = field.getName();
+				boolean unique = field.getAnnotation(Index.class).unique();
+				IndexOptions options = new IndexOptions();
+				String indexName = 
+						objects.createIndex(new Document(name, 1), options.unique(unique));
+				String ind = indexName;
 				}
 		}
 		if(keyFieldName == null)

@@ -5,7 +5,7 @@ import tel_ran.database.mongo.model.annotations.*;
 public class Person {
 	@Id
 	private int id;
-	@Index(unique = true)
+	@Index
 	private int birthYear;
 //	@Id
 	private String name;
